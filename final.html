@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,14 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Final</title>
 
+<!-- خط التوقيع -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+
 <style>
 body {
     background: linear-gradient(135deg, #b300ff, #ff4fa0);
     font-family: "Tajawal", sans-serif;
     text-align: center;
     padding: 40px;
+    margin: 0;
 }
 
+/* صندوق المحتوى */
 .box {
     background: white;
     padding: 30px;
@@ -22,12 +29,22 @@ body {
     margin: auto;
     box-shadow: 0 0 30px rgba(0,0,0,0.3);
     font-size: 20px;
+    line-height: 1.7;
 }
 
+/* توقيع */
 .signature {
-    margin-top: 20px;
-    font-size: 22px;
+    margin-top: 25px;
+}
+
+.sig {
+    font-family:  Pacifico , cursive;
+    font-size: 28px;
     color: #ff4fa0;
+    display: inline-block;
+    transform: rotate(-4deg);
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.25);
 }
 
 /* الثلج */
@@ -37,7 +54,10 @@ body {
   color: white;
   font-size: 20px;
   animation: fall 7s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
 }
+
 @keyframes fall {
   to { transform: translateY(110vh); }
 }
@@ -48,14 +68,17 @@ body {
 
 <div class="box">
     <h2>مطور الموقع</h2>
-    <p>د/ روني البـحيرة</p>
+    <p>د/ رونــي الـبحـيرة</p>
     <p>01212843252</p>
     <p>انا بقالي يومين بطورلك ف الموقع يارب يكون عجبك ❤️</p>
-    <div class="signature">Happy new year ya albi ✨</div>
+
+    <div class="signature">
+        <span class="sig">Happy new year ya albi</span>
+    </div>
 </div>
 
 <script>
-// الثلج
+// تساقط الثلج
 setInterval(() => {
   let s = document.createElement("div");
   s.className = "snowflake";
