@@ -4,93 +4,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Memories</title>
+<title>Love Message</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
 
 <style>
-body {
-    background: linear-gradient(135deg, #ff8ad4, #8700b3);
-    font-family: "Tajawal", sans-serif;
-    text-align: center;
-    padding-bottom: 100px;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family: Dancing Script ,cursive;
+    background:linear-gradient(135deg,#ff8ad4,#b300ff);
+    min-height:100vh;
+    overflow-x:hidden;
+    padding:40px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
-.memory {
-    background: white;
-    margin: 20px auto;
-    padding: 15px;
-    width: 90%;
-    max-width: 450px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+/* box */
+.box{
+    background:white;
+    padding:28px;
+    border-radius:25px;
+    font-size:22px;
+    width:90%;
+    max-width:700px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+    line-height:1.8;
+    z-index:20;
 }
 
-.memory img {
-    width: 100%;
-    border-radius: 15px;
+/* button */
+button{
+    margin-top:25px;
+    padding:15px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff4fa0;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(255,0,150,0.4);
 }
 
-.love {
-    font-size: 22px;
-    color: #ff4fa0;
-    margin-top: 10px;
+/* SNOW */
+.snowflake{
+    position:fixed;
+    top:-10px;
+    color:white;
+    font-size:20px;
+    animation:fall linear infinite;
+    z-index:5;
+}
+@keyframes fall{to{transform:translateY(110vh);}}
+
+/* WAVES */
+.waves{
+    position:fixed;
+    bottom:0;
+    left:0;right:0;
+    height:140px;
+    pointer-events:none;
+    z-index:8;
+}
+.wave{
+    position:absolute;
+    width:200%;
+    height:100px;
+    background-repeat:repeat-x;
+    animation:waveAnim 13s linear infinite;
+}
+@keyframes waveAnim{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* 3 waves */
+.wave1{bottom:20px;opacity:.15;background-image:url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100 ><path d= M0 40 C200 90 350 0 600 40 C850 80 1050 0 1200 40 L1200 100 L0 100 Z  fill= white /></svg>");}
+.wave2{bottom:8px;opacity:.23;animation-duration:17s;background-image:url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100 ><path d= M0 20 C200 50 400 0 600 20 C800 40 1000 0 1200 20 L1200 100 L0 100 Z  fill= white /></svg>");}
+.wave3{bottom:0px;opacity:.3;animation-duration:10s;background-image:url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100 ><path d= M0 30 C250 90 500 0 600 30 C700 60 950 0 1200 30 L1200 100 L0 100 Z  fill= white /></svg>");}
+
+/* Emoji wave */
+.emoji-wave{
+    position:fixed;
+    bottom:120px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    font-size:28px;
+    z-index:9;
+}
+.emoji-wave span{
+    display:inline-block;
+    animation:float 2.5s ease-in-out infinite;
+}
+.emoji-wave span:nth-child(2){animation-delay:.2s}
+.emoji-wave span:nth-child(3){animation-delay:.4s}
+.emoji-wave span:nth-child(4){animation-delay:.6s}
+.emoji-wave span:nth-child(5){animation-delay:.8s}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-14px);}
+    100%{transform:translateY(0);}
 }
 
-button {
-    margin-top: 20px;
-    padding: 15px 25px;
-    background: #ff4fa0;
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 20px;
-    cursor: pointer;
+/* Bulbs - same as index */
+.bulbs-top, .side-bulbs-left, .side-bulbs-right{
+    position:fixed;
+    z-index:15;
+    pointer-events:none;
 }
+.bulbs-top{
+    top:6px;width:100%;
+    display:flex;justify-content:space-around;
+}
+.side-bulbs-left{
+    left:6px;top:40px;height:calc(100% - 80px);
+    display:flex;flex-direction:column;justify-content:space-around;
+}
+.side-bulbs-right{
+    right:6px;top:40px;height:calc(100% - 80px);
+    display:flex;flex-direction:column;justify-content:space-around;
+}
+.bulb{
+    width:18px;height:30px;
+    border-radius:50% 50% 60% 60%;
+    background:red;
+    position:relative;
+    filter:drop-shadow(0 0 8px currentColor);
+    animation:glow 1.8s infinite alternate,sway 3.6s ease-in-out infinite;
+}
+@keyframes glow{0%{opacity:.45;transform:scale(.92);}100%{opacity:1;transform:scale(1);}}
+@keyframes sway{0%{transform:translateX(0);}50%{transform:translateX(6px);}100%{transform:translateX(0);}}
 
-.snowflake {
-  position: fixed;
-  top: -10px;
-  color: white;
-  font-size: 20px;
-  animation: fall 7s linear infinite;
+.bulb::before{
+    content:"";position:absolute;
+    top:-8px;left:4px;width:10px;height:8px;
+    background:#444;border-radius:3px;
 }
-@keyframes fall {
-  to { transform: translateY(110vh); }
+.bulb::after{
+    content:"";position:absolute;
+    top:-30px;left:8px;width:2px;height:22px;
+    background:rgba(255,255,255,0.07);
 }
 </style>
 </head>
 
 <body>
 
-<div class="memory">
-    <video width="100%" height="220" autoplay muted loop playsinline>
-        <source src="Love.mp4" type="video/mp4">
-    </video>
+<!-- bulbs -->
+<div class="bulbs-top" id="bulbTop"></div>
+<div class="side-bulbs-left" id="bulbLeft"></div>
+<div class="side-bulbs-right" id="bulbRight"></div>
+
+<!-- emoji wave -->
+<div class="emoji-wave">
+    <span>💖</span>
+    <span>🎄</span>
+    <span>☃️</span>
+    <span>🌨</span>
+    <span>❄️</span>
 </div>
 
-<div class="memory"><img src="memory1.jpg"><div class="love">بحبك</div></div>
-<div class="memory"><img src="memory2.jpg"><div class="love">بعشقك</div></div>
-<div class="memory"><img src="memory3.jpg"><div class="love">بموت فيكي</div></div>
-<div class="memory"><img src="memory4.jpg"><div class="love">كسمك</div></div>
-<div class="memory"><img src="memory5.jpg"><div class="love">ام العيال</div></div>
+<!-- waves -->
+<div class="waves">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+</div>
 
-<h2 style="color:white; margin-top:40px;">تعالي بقا هنا اوريكي حاجه 💖</h2>
+<div class="box" id="text"></div>
 
-<button onclick="go()">اضغط هنا</button>
+<button onclick="next()">اضغط هنا</button>
 
 <script>
-function go(){
-  window.location.href = "final.html";
+/* romantic message */
+let msg = `أنا يمكن ماقولتش كتير بس قلبي من جوّه بينده عليك كل يوم ووجودك في حياتي مش صدفة… وبحبك حب هادي، حب مريح، حب مليان غبا بحس الي بحب طفله كده.`;
+let i = 0;
+function type(){
+    if(i < msg.length){
+        document.getElementById("text").innerHTML += msg.charAt(i);
+        i++;
+        setTimeout(type,40);
+    }
 }
+type();
 
-setInterval(() => {
-  let s = document.createElement("div");
-  s.className = "snowflake";
-  s.innerHTML = "❄";
-  s.style.left = Math.random() * window.innerWidth + "px";
-  s.style.fontSize = (Math.random()*15+10) + "px";
-  document.body.appendChild(s);
-  setTimeout(() => s.remove(), 7000);
-}, 150);
+/* go next */
+function next(){ window.location.href="memories.html"; }
+
+/* snow */
+setInterval(()=>{
+    let s=document.createElement("div");
+    s.className="snowflake";
+    s.innerHTML="❄";
+    s.style.left=Math.random()*100+"vw";
+    s.style.fontSize=(Math.random()*14+8)+"px";
+    s.style.animationDuration=(Math.random()*6+6)+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),12000);
+},220);
+
+/* bulbs */
+const colors=["#e53935","#ffeb3b","#2196f3","#4caf50","#9c27b0"];
+function bulb(color){
+    let b=document.createElement("div");
+    b.className="bulb";
+    b.style.background=color;
+    b.style.animationDelay=Math.random()*1.4+"s";
+    return b;
+}
+for(let i=0;i<14;i++) bulbTop.appendChild(bulb(colors[i%5]));
+for(let i=0;i<10;i++) bulbLeft.appendChild(bulb(colors[(i+2)%5]));
+for(let i=0;i<10;i++) bulbRight.appendChild(bulb(colors[(i+4)%5]));
 </script>
 
 </body>
