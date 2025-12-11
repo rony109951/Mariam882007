@@ -2,92 +2,119 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Final</title>
-
-<!-- خط التوقيع -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Final - Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
 <style>
-body {
-    background: linear-gradient(135deg, #b300ff, #ff4fa0);
-    font-family: "Tajawal", sans-serif;
-    text-align: center;
-    padding: 40px;
-    margin: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family: Dancing Script ,cursive;
+  min-height:100vh;
+  background:linear-gradient(135deg,#b300ff,#ff4fa0);
+  overflow-x:hidden;
+  position:relative;
+  padding-bottom:160px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
 }
 
-/* صندوق المحتوى */
-.box {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    margin: auto;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    font-size: 20px;
-    line-height: 1.7;
-}
+/* stars & bulbs & snow (same feel) */
+.stars{position:fixed;width:100%;height:100%;z-index:1;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 3s infinite}
+@keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+.bulbs-top{position:fixed;top:6px;left:0;right:0;display:flex;justify-content:space-around;padding:6px 20px;z-index:12;pointer-events:none}
+.side-bulbs-left,.side-bulbs-right{position:fixed;top:40px;height:calc(100% - 80px);display:flex;flex-direction:column;justify-content:space-around;z-index:12;pointer-events:none;padding:10px}
+.side-bulbs-left{left:6px}.side-bulbs-right{right:6px}
+.bulb{width:18px;height:30px;border-radius:50% 50% 60% 60%;position:relative;filter:drop-shadow(0 0 8px currentColor);animation:glow 1.8s infinite alternate,sway 3.6s ease-in-out infinite}
+.bulb::before{content:"";position:absolute;top:-8px;left:4px;width:10px;height:8px;background:#444;border-radius:3px}
+.bulb::after{content:"";position:absolute;top:-30px;left:8px;width:2px;height:22px;background:rgba(255,255,255,0.06)}
+@keyframes glow{0%{opacity:.45;transform:scale(.92)}100%{opacity:1;transform:scale(1)}}
+@keyframes sway{0%{transform:translateX(0) rotate(-1deg)}50%{transform:translateX(6px) rotate(2deg)}100%{transform:translateX(0) rotate(-1deg)}}
 
-/* توقيع */
-.signature {
-    margin-top: 25px;
-}
+/* snow */
+.snowflake{position:fixed;top:-10px;z-index:6;color:white;font-size:1.5em;animation:fall linear infinite;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh)}}
 
-.sig {
-    font-family:  Pacifico , cursive;
-    font-size: 28px;
-    color: #ff4fa0;
-    display: inline-block;
-    transform: rotate(-4deg);
-    letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.25);
-}
+/* waves */
+.waves{position:fixed;left:0;right:0;bottom:0;height:140px;z-index:10;pointer-events:none;overflow:hidden}
+.wave{position:absolute;left:0;width:200%;height:100px;top:0;background-repeat:repeat-x;transform:translate3d(0,0,0)}
+.wave.wave1{bottom:22px;opacity:.12;background-image:url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100  preserveAspectRatio= none ><path d= M0 40 C150 80 350 0 600 40 C850 80 1050 0 1200 40 L1200 100 L0 100 Z  fill= %23ffffff /></svg>");animation:waveAnim 10s linear infinite}
+.wave.wave2{bottom:12px;opacity:.16;background-image:url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100  preserveAspectRatio= none ><path d= M0 30 C200 70 400 0 600 30 C800 60 1000 0 1200 30 L1200 100 L0 100 Z  fill= %23ffffff /></svg>");animation:waveAnim 14s linear infinite reverse}
+.wave.wave3{bottom:2px;opacity:.22;background-image:url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100  preserveAspectRatio= none ><path d= M0 20 C250 60 500 0 600 20 C700 40 950 0 1200 20 L1200 100 L0 100 Z  fill= %23ffffff /></svg>");animation:waveAnim 8s linear infinite}
+@keyframes waveAnim{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* الثلج */
-.snowflake {
-  position: fixed;
-  top: -10px;
-  color: white;
-  font-size: 20px;
-  animation: fall 7s linear infinite;
-  pointer-events: none;
-  z-index: 9999;
-}
+/* emoji wave */
+.emoji-wave{position:fixed;left:0;right:0;bottom:120px;height:60px;z-index:11;pointer-events:none;display:flex;justify-content:center;align-items:flex-end;gap:18px;font-size:30px}
+.emoji-wave span{display:inline-block;transform-origin:center;animation:emojiFloat 2.6s ease-in-out infinite}
+@keyframes emojiFloat{0%{transform:translateY(0) rotate(-3deg);opacity:.9}25%{transform:translateY(-14px) rotate(0deg);opacity:1}50%{transform:translateY(0) rotate(3deg);opacity:.95}75%{transform:translateY(-8px) rotate(0deg);opacity:1}100%{transform:translateY(0) rotate(-3deg);opacity:.9}}
 
-@keyframes fall {
-  to { transform: translateY(110vh); }
-}
+/* small tree sway */
+.small-tree{position:fixed;top:18px;right:18px;font-size:48px;z-index:13;transform-origin:50% 50%;animation:treeSwayX 3.5s ease-in-out infinite}
+@keyframes treeSwayX{0%{transform:translateX(0) rotate(-1deg)}25%{transform:translateX(-6px) rotate(-2deg)}50%{transform:translateX(0) rotate(0)}75%{transform:translateX(6px) rotate(2deg)}100%{transform:translateX(0) rotate(-1deg)}}
+
+/* content */
+.box{background:white;padding:28px;border-radius:18px;width:90%;max-width:520px;margin-top:120px;box-shadow:0 18px 40px rgba(0,0,0,0.18);text-align:center;z-index:15}
+.h2{font-size:24px;margin-bottom:8px}
+.p{color:#333;line-height:1.6}
+
+/* signature */
+.signature{margin-top:18px;font-family: Pacifico ,cursive;font-size:28px;color:#ff4fa0;display:inline-block;transform:rotate(-4deg);text-shadow:0 2px 4px rgba(0,0,0,0.12)}
+
+/* responsive */
+@media(max-width:700px){.small-tree{font-size:44px;right:12px}.box{margin-top:90px;padding:20px}}
 </style>
 </head>
-
 <body>
 
-<div class="box">
-    <h2>مطور الموقع</h2>
-    <p>د/ رونــي الـبحـيرة</p>
-    <p>01212843252</p>
-    <p>انا بقالي يومين بطورلك ف الموقع يارب يكون عجبك ❤️</p>
+<!-- stars -->
+<div class="stars" id="stars"></div>
 
-    <div class="signature">
-        <span class="sig">Happy new year ya albi</span>
-    </div>
+<!-- bulbs -->
+<div class="bulbs-top" id="bulbTop"></div>
+<div class="side-bulbs-left" id="bulbLeft"></div>
+<div class="side-bulbs-right" id="bulbRight"></div>
+
+<!-- small swaying tree -->
+<div class="small-tree" aria-hidden="true">🎄</div>
+
+<!-- emoji wave -->
+<div class="emoji-wave" aria-hidden="true">
+  <span>💖</span><span>🎄</span><span>🌨 </span><span>☃️</span><span>❄️</span>
+</div>
+
+<!-- waves -->
+<div class="waves" aria-hidden="true">
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+  <div class="wave wave3"></div>
+</div>
+
+<!-- main card -->
+<div class="box" role="main" aria-labelledby="devTitle">
+  <h2 id="devTitle" class="h2">مطور الموقع</h2>
+  <p class="p">د/ رونـي البحيره<br>01212843252</p>
+  <p class="p">انا بقالي يومين بطورلك فالموقع، يارب يكون عجبك ❤️</p>
+
+  <div class="signature">Happy new year ya albi</div>
 </div>
 
 <script>
-// تساقط الثلج
-setInterval(() => {
-  let s = document.createElement("div");
-  s.className = "snowflake";
-  s.innerHTML = "❄";
-  s.style.left = Math.random() * window.innerWidth + "px";
-  s.style.fontSize = (Math.random()*15+10) + "px";
-  document.body.appendChild(s);
-  setTimeout(() => s.remove(), 7000);
-}, 150);
+/* stars */
+const stars=document.getElementById( stars );
+for(let i=0;i<140;i++){let s=document.createElement( div );s.className= star ;s.style.left=Math.random()*100+ % ;s.style.top=Math.random()*100+ % ;s.style.animationDelay=Math.random()*3+ s ;stars.appendChild(s)}
+
+/* bulbs */
+const colors=[ #e53935 , #ffeb3b , #2196f3 , #4caf50 , #9c27b0 ];
+function createBulb(color){const b=document.createElement( div );b.className= bulb ;b.style.background=color;b.style.animationDelay=(Math.random()*1.6)+ s ;return b}
+const top=document.getElementById( bulbTop );for(let i=0;i<14;i++)top.appendChild(createBulb(colors[i%colors.length]));
+const leftCol=document.getElementById( bulbLeft );for(let i=0;i<11;i++)leftCol.appendChild(createBulb(colors[(i+2)%colors.length]));
+const rightCol=document.getElementById( bulbRight );for(let i=0;i<11;i++)rightCol.appendChild(createBulb(colors[(i+4)%colors.length]));
+
+/* snow */
+setInterval(()=>{let s=document.createElement( div );s.className= snowflake ;s.innerHTML= ❄ ;s.style.left=(Math.random()*100)+ vw ;s.style.fontSize=(Math.random()*14+8)+ px ;s.style.animationDuration=(Math.random()*6+6)+ s ;document.body.appendChild(s);setTimeout(()=>s.remove(),12000)},220);
 </script>
 
 </body>
