@@ -1,364 +1,403 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas 2026 - Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,
-    <svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 100 100 >
-    <text y= .9em  font-size= 90 >🎄</text></svg>">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Christmas Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
 
-        body {
-            font-family:  Dancing Script , cursive;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #1a0033 0%, #330066 25%, #4d0099 50%, #6600cc 75%, #7f00ff 100%);
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 50px 20px;
-        }
+<style>
+/* ----------------------- RESET ----------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .stars { position: fixed; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-        .star {
-            position: absolute;
-            width: 2px; height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
+/* ----------------------- BODY ------------------------ */
+body {
+    font-family:  Dancing Script , cursive;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#1a0033,#330066,#4d0099,#6600cc,#7f00ff);
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+}
 
-        .snow-container {
-            position: fixed;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .snowflake {
-            position: absolute;
-            top: -50px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.5em;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(360deg); }
-        }
+/* ----------------------- STARS ---------------------- */
+.stars {
+    position: fixed;
+    width: 100%; height: 100%;
+    z-index: 1; pointer-events: none;
+}
+.star {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+@keyframes twinkle {
+    0%,100% { opacity: 0.3 }
+    50% { opacity: 1 }
+}
 
-        .lights-container {
-            position: fixed;
-            top: 20px; left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            z-index: 10;
-            pointer-events: none;
-        }
-        .light {
-            width: 20px; height: 20px;
-            border-radius: 50%;
-            animation: glow 1.5s infinite alternate;
-        }
-        .light:nth-child(1) { background: #ff0000; box-shadow: 0 0 20px #ff0000; }
-        .light:nth-child(2) { background: #00ff00; box-shadow: 0 0 20px #00ff00; animation-delay: 0.3s; }
-        .light:nth-child(3) { background: #0000ff; box-shadow: 0 0 20px #0000ff; animation-delay: 0.6s; }
-        .light:nth-child(4) { background: #ffff00; box-shadow: 0 0 20px #ffff00; animation-delay: 0.9s; }
-        .light:nth-child(5) { background: #ff00ff; box-shadow: 0 0 20px #ff00ff; animation-delay: 1.2s; }
+/* ----------------------- SNOW ----------------------- */
+.snowflake {
+    position: fixed;
+    top: -10px;
+    z-index: 6;
+    color: white;
+    font-size: 1.5em;
+    animation: fall linear infinite;
+    pointer-events: none;
+}
+@keyframes fall {
+    to { transform: translateY(110vh); }
+}
 
-        @keyframes glow {
-            0% { opacity: 0.5; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
-        }
+/* --------------------- DROP BULBS ------------------- */
+/* top row */
+.bulbs-top {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    top: 8px;
+    z-index: 9;
+    pointer-events: none;
+    padding: 6px 20px;
+}
 
-        .music-notes {
-            position: fixed;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-        .note {
-            position: absolute;
-            font-size: 2em;
-            animation: floatNote 8s ease-in-out infinite;
-            opacity: 0;
-        }
-        @keyframes floatNote {
-            0% {
-                opacity: 0;
-                transform: translateY(100vh) rotate(0deg);
-            }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% {
-                opacity: 0;
-                transform: translateY(-100px) rotate(360deg);
-            }
-        }
+/* side rows */
+.side-bulbs-right,
+.side-bulbs-left {
+    position: fixed;
+    top: 40px;
+    height: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 9;
+    pointer-events: none;
+    padding: 10px;
+}
+.side-bulbs-right { right: 6px; align-items: center; }
+.side-bulbs-left { left: 6px; align-items: center; }
 
-        .login-box {
-            position: relative;
-            z-index: 5;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 60px 50px;
-            border-radius: 40px;
-            box-shadow: 0 30px 80px rgba(127, 0, 255, 0.5);
-            max-width: 600px; width: 100%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            animation: slideIn 0.8s ease-out;
-            text-align: center;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+/* the bulb */
+.bulb {
+    width: 18px;
+    height: 30px;
+    background: red;
+    border-radius: 50% 50% 60% 60%;
+    position: relative;
+    margin: 6px 0;
+    transform-origin: center top;
+    animation: glow 1.8s infinite alternate, sway 3.6s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px currentColor);
+}
 
-        .year-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff0080, #7f00ff);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-size: 1.4em;
-            font-weight: bold;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 20px rgba(127, 0, 255, 0.4);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
+/* metal cap */
+.bulb::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 4px;
+    width: 10px;
+    height: 8px;
+    background: #444;
+    border-radius: 3px;
+}
 
-        .christmas-emoji {
-            font-size: 5em;
-            margin-bottom: 25px;
-            animation: rotate3d 3s ease-in-out infinite;
-        }
-        @keyframes rotate3d {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(-10deg) scale(1.1); }
-            75% { transform: rotate(10deg) scale(1.1); }
-        }
+/* thin cord above caps */
+.bulb::after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 8px;
+    width: 2px;
+    height: 22px;
+    background: rgba(255,255,255,0.06);
+}
 
-        h1 {
-            font-family:  Great Vibes , cursive;
-            font-size: 3.5em;
-            background: linear-gradient(135deg, #ff0080, #7f00ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
+/* glow + sway */
+@keyframes glow {
+    0% { opacity: 0.45; transform: scale(0.92); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes sway {
+    0% { transform: translateX(0) rotate(-1deg); }
+    50% { transform: translateX(6px) rotate(2deg); }
+    100% { transform: translateX(0) rotate(-1deg); }
+}
 
-        .subtitle {
-            font-size: 2em;
-            color: #6600cc;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
+/* --------------------- LOGIN BOX -------------------- */
+.login-box {
+    position: relative;
+    z-index: 11;
+    background: rgba(255,255,255,0.98);
+    padding: 42px 34px;
+    border-radius: 28px;
+    text-align: center;
+    max-width: 620px;
+    width: calc(100% - 40px);
+    box-shadow: 0 20px 60px rgba(127,0,255,0.42);
+    border: 2px solid rgba(255,255,255,0.15);
+}
 
-        .password-input {
-            width: 100%;
-            padding: 20px;
-            font-size: 1.3em;
-            border: 3px solid rgba(127, 0, 255, 0.3);
-            border-radius: 50px;
-            text-align: center;
-            font-family:  Dancing Script , cursive;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
-        }
-        .password-input:focus {
-            outline: none;
-            border-color: #7f00ff;
-            box-shadow: 0 0 20px rgba(127, 0, 255, 0.5);
-            background: white;
-        }
-        .password-input::placeholder { color: #999; }
+/* tree emoji (now horizontal sway) */
+.christmas-tree {
+    font-size: 84px;
+    margin-bottom: 6px;
+    display: inline-block;
+    transform-origin: 50% 50%;
+    animation: treeSwayX 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.25));
+}
+@keyframes treeSwayX {
+    0% { transform: translateX(0) rotate(-1deg); }
+    25% { transform: translateX(-8px) rotate(-2deg); }
+    50% { transform: translateX(0) rotate(0deg); }
+    75% { transform: translateX(8px) rotate(2deg); }
+    100% { transform: translateX(0) rotate(-1deg); }
+}
 
-        .login-btn {
-            width: 100%;
-            padding: 20px;
-            font-size: 1.4em;
-            font-family:  Pacifico , cursive;
-            background: linear-gradient(135deg, #ff0080, #7f00ff);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(127, 0, 255, 0.5);
-            font-weight: bold;
-        }
-        .login-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(127, 0, 255, 0.7);
-        }
+/* year tag */
+.year-tag {
+    display: inline-block;
+    padding: 10px 24px;
+    font-size: 1.3em;
+    border-radius: 28px;
+    background: linear-gradient(135deg,#ff0080,#7f00ff);
+    color: white;
+    margin-bottom: 6px;
+    box-shadow: 0 8px 18px rgba(127,0,255,0.28);
+}
 
-        .error-msg {
-            background: rgba(255, 0, 0, 0.1);
-            color: #ff0000;
-            padding: 15px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            animation: shake 0.5s ease;
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
+/* heading */
+h1 {
+    font-family:  Great Vibes , cursive;
+    font-size: 3.2em;
+    background: linear-gradient(135deg,#ff0080,#7f00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 6px 0 4px 0;
+}
+.subtitle {
+    font-size: 1.2em;
+    color: #6600cc;
+    margin-bottom: 18px;
+}
 
-        .emoji-row {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 2.2em;
-        }
-        .emoji-row span {
-            animation: bounce 2s ease-in-out infinite;
-        }
-        .emoji-row span:nth-child(2) { animation-delay: 0.2s; }
-        .emoji-row span:nth-child(3) { animation-delay: 0.4s; }
-        .emoji-row span:nth-child(4) { animation-delay: 0.6s; }
-        .emoji-row span:nth-child(5) { animation-delay: 0.8s; }
+/* input + button */
+.password-input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 40px;
+    border: 3px solid #bb00ff;
+    text-align: center;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.95);
+}
+.login-btn {
+    margin-top: 16px;
+    padding: 14px;
+    width: 100%;
+    border-radius: 40px;
+    border: none;
+    background: linear-gradient(135deg,#ff0080,#7f00ff);
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.error-msg {
+    margin-top: 12px;
+    color: #e60000;
+    font-size: 1.05em;
+}
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+/* --------------------- WAVES (bottom) ------------------ */
+.waves {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 140px;
+    z-index: 7;
+    pointer-events: none;
+    overflow: hidden;
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100px;
+    top: 0;
+    background-repeat: repeat-x;
+    transform: translate3d(0,0,0);
+    opacity: 0.7;
+}
 
-        @media (max-width: 768px) {
-            body { padding: 30px 15px; }
-            .login-box { padding: 40px 30px; }
-            h1 { font-size: 2.5em; }
-            .subtitle { font-size: 1.5em; }
-            .login-btn { font-size: 1.2em; padding: 18px; }
-            .password-input { font-size: 1.1em; padding: 18px; }
-        }
-    </style>
+/* SVG data-URI backgrounds for nicer waves */
+.wave.wave1 { background-image: url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100  preserveAspectRatio= none ><path d= M0 40 C150 80 350 0 600 40 C850 80 1050 0 1200 40 L1200 100 L0 100 Z  fill= %23ffffff /></svg>"); bottom: 22px; opacity:0.12; animation: waveAnim 10s linear infinite; }
+.wave.wave2 { background-image: url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100  preserveAspectRatio= none ><path d= M0 30 C200 70 400 0 600 30 C800 60 1000 0 1200 30 L1200 100 L0 100 Z  fill= %23ffffff /></svg>"); bottom: 12px; opacity:0.16; animation: waveAnim 14s linear infinite reverse; }
+.wave.wave3 { background-image: url("data:image/svg+xml;utf8,<svg xmlns= http://www.w3.org/2000/svg  viewBox= 0 0 1200 100  preserveAspectRatio= none ><path d= M0 20 C250 60 500 0 600 20 C700 40 950 0 1200 20 L1200 100 L0 100 Z  fill= %23ffffff /></svg>"); bottom: 2px; opacity:0.22; animation: waveAnim 8s linear infinite; }
+
+@keyframes waveAnim {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ------------------- EMOJI WAVE (above waves) ------------------ */
+.emoji-wave {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 120px; /* just above the waves */
+    height: 60px;
+    z-index: 8;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 18px;
+    font-size: 30px;
+}
+.emoji-wave span {
+    display: inline-block;
+    transform-origin: center;
+    animation: emojiFloat 2.6s ease-in-out infinite;
+}
+.emoji-wave span:nth-child(1){ animation-delay: 0s; }
+.emoji-wave span:nth-child(2){ animation-delay: 0.2s; }
+.emoji-wave span:nth-child(3){ animation-delay: 0.4s; }
+.emoji-wave span:nth-child(4){ animation-delay: 0.6s; }
+.emoji-wave span:nth-child(5){ animation-delay: 0.8s; }
+@keyframes emojiFloat {
+    0% { transform: translateY(0) rotate(-3deg); opacity: 0.9; }
+    25% { transform: translateY(-14px) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(0) rotate(3deg); opacity: 0.95; }
+    75% { transform: translateY(-8px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(0) rotate(-3deg); opacity: 0.9; }
+}
+
+/* responsive */
+@media (max-width: 600px) {
+    .christmas-tree { font-size: 64px; }
+    .login-box { padding: 28px 18px; border-radius: 20px; }
+    h1 { font-size: 2.4em; }
+    .year-tag { padding: 8px 18px; font-size: 1.05em; }
+    .bulb { width: 14px; height: 24px; }
+    .emoji-wave { font-size: 24px; gap: 12px; bottom: 100px; }
+}
+</style>
 </head>
 <body>
 
-    <div class="stars" id="starsContainer"></div>
+<!-- Stars -->
+<div class="stars" id="stars"></div>
 
-    <div class="lights-container">
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-    </div>
+<!-- Bulbs Top -->
+<div class="bulbs-top" id="bulbTop"></div>
 
-    <div class="snow-container" id="snowContainer"></div>
-    <div class="music-notes" id="musicNotes"></div>
+<!-- Bulbs Left -->
+<div class="side-bulbs-left" id="bulbLeft"></div>
 
-    <div class="login-box">
-        <div class="year-tag">2026</div>
-        <div class="christmas-emoji">🎄</div>
-        <h1>Christmas </h1>
-        <p class="subtitle">enter password</p>
+<!-- Bulbs Right -->
+<div class="side-bulbs-right" id="bulbRight"></div>
 
-        <div id="errorBox"></div>
+<!-- Waves Bottom -->
+<div class="waves" aria-hidden="true">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+</div>
 
-        <div class="input-group">
-            <input 
-                type="password" 
-                id="pass"
-                placeholder="Password" 
-                required
-                class="password-input"
-                autocomplete="off"
-            >
-        </div>
+<!-- Emoji wave (floating emojis above waves) -->
+<div class="emoji-wave" aria-hidden="true">
+    <span>💖</span>
+    <span>🎄</span>
+    <span>☃️</span>
+    <span>🌨</span>
+    <span>❄️</span>
+</div>
 
-        <button type="button" class="login-btn" onclick="checkPass()">
-            unlock🔓
-        </button>
+<!-- LOGIN BOX -->
+<div class="login-box" role="main" aria-labelledby="siteTitle">
+    <div class="year-tag">2026</div>
+    <div class="christmas-tree" aria-hidden="true">🎄</div>
+    <h1 id="siteTitle">Christmas</h1>
+    <p class="subtitle">enter password</p>
 
-        <div class="emoji-row">
-            <span>🎄</span>
-            <span>🎁</span>
-            <span>🎅</span>
-            <span>💝</span>
-            <span>⛄</span>
-        </div>
-    </div>
+    <input id="pass" class="password-input" type="password" placeholder="Password" aria-label="Password">
+    <button class="login-btn" onclick="checkPass()" aria-label="unlock">unlock 🔓</button>
 
-    <script>
-        function checkPass() {
-            const p = document.getElementById( pass ).value;
-            const errorBox = document.getElementById( errorBox );
+    <div id="error" aria-live="polite"></div>
+</div>
 
-            if (p ===  882007 ) {
-                window.location.href =  love.html ; // ← مهم: يروح لصفحة الكلام الرومانسي
-            } else {
-                errorBox.innerHTML =  <div class="error-msg">عيد ميلادك غلط يا قلبي 🎄♥️</div> ;
-            }
-        }
+<script>
+/* ---------------- Stars ---------------- */
+const stars = document.getElementById("stars");
+for (let i = 0; i < 140; i++) {
+    let s = document.createElement("div");
+    s.className = "star";
+    s.style.left = Math.random()*100 + "%";
+    s.style.top = Math.random()*100 + "%";
+    s.style.animationDelay = (Math.random()*3) + "s";
+    stars.appendChild(s);
+}
 
-        // النجوم
-        const starsContainer = document.getElementById( starsContainer );
-        for (let i = 0; i < 200; i++) {
-            const star = document.createElement( div );
-            star.className =  star ;
-            star.style.left = Math.random() * 100 +  % ;
-            star.style.top = Math.random() * 100 +  % ;
-            star.style.animationDelay = Math.random() * 3 +  s ;
-            starsContainer.appendChild(star);
-        }
+/* ---------------- Bulbs creation ---------------- */
+const colors = ["#e53935","#ffeb3b","#2196f3","#4caf50","#9c27b0"]; // red,yellow,blue,green,purple
 
-        // الثلج
-        const snowContainer = document.getElementById( snowContainer );
-        const snowflakes = [ ❄️ ,  ❅ ,  ❆ ];
-        for (let i = 0; i < 50; i++) {
-            const snow = document.createElement( div );
-            snow.className =  snowflake ;
-            snow.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
-            snow.style.left = Math.random() * 100 +  % ;
-            snow.style.animationDuration = (Math.random() * 5 + 5) +  s ;
-            snow.style.animationDelay = Math.random() * 5 +  s ;
-            snow.style.fontSize = (Math.random() * 1 + 0.8) +  em ;
-            snowContainer.appendChild(snow);
-        }
+function createBulbElement(color) {
+    const b = document.createElement("div");
+    b.className = "bulb";
+    b.style.background = color;
+    b.style.animationDelay = (Math.random()*1.5) + "s";
+    return b;
+}
 
-        // النوتات الموسيقية
-        const musicNotes = document.getElementById( musicNotes );
-        const notes = [ 🔔 ,  🎄 ,  ⛄ ,  🎁 ,  🎅 ];
+// fill top row
+const topRow = document.getElementById("bulbTop");
+for (let i = 0; i < 14; i++) {
+    topRow.appendChild(createBulbElement(colors[i % colors.length]));
+}
+// left column
+const leftCol = document.getElementById("bulbLeft");
+for (let i = 0; i < 11; i++) {
+    leftCol.appendChild(createBulbElement(colors[(i+2) % colors.length]));
+}
+// right column
+const rightCol = document.getElementById("bulbRight");
+for (let i = 0; i < 11; i++) {
+    rightCol.appendChild(createBulbElement(colors[(i+4) % colors.length]));
+}
 
-        function createNote() {
-            const note = document.createElement( div );
-            note.className =  note ;
-            note.textContent = notes[Math.floor(Math.random() * notes.length)];
-            note.style.left = Math.random() * 100 +  % ;
-            note.style.animationDuration = (Math.random() * 5 + 8) +  s ;
-            note.style.animationDelay = Math.random() * 3 +  s ;
-            note.style.color = `hsl(${Math.random() * 60 + 280}, 80%, 70%)`;
-            musicNotes.appendChild(note);
-            setTimeout(() => note.remove(), 12000);
-        }
+/* ---------------- Snow ---------------- */
+setInterval(()=>{
+    let s=document.createElement("div");
+    s.className="snowflake";
+    s.innerHTML="❄";
+    s.style.left=(Math.random()*100)+"vw";
+    s.style.fontSize=(Math.random()*14+8)+"px";
+    s.style.animationDuration=(Math.random()*6+6)+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),12000);
+},220);
 
-        for (let i = 0; i < 15; i++) {
-            setTimeout(() => createNote(), i * 1000);
-        }
-        setInterval(() => {
-            createNote();
-        }, 2000);
-    </script>
+/* -------- Password Check (immediate navigation) -------- */
+function checkPass(){
+    const p = document.getElementById("pass").value.trim();
+    if (p === "882007") {
+        window.location.href = "love.html";
+    } else {
+        document.getElementById("error").innerHTML = "<div class= error-msg >عيد ميلادك غلط يا قلبي 🎄🫶🏼</div>";
+    }
+}
+</script>
+
 </body>
 </html>
